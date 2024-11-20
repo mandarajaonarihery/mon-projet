@@ -1,11 +1,8 @@
-// src/App.js
+// src/pages/Home.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import PostPage from './pages/PostPage';
-import Header from './components/Header';
+import BlogPost from '../components/BlogPost';
 
-const App = () => {
+const Home = () => {
   const posts = [
     {
       title: 'Première publication',
@@ -29,18 +26,15 @@ const App = () => {
   ];
 
   return (
-    <Router>
-      {/* Le header est affiché avant les routes */}
-      <Header />
-
-      <div className="container mx-auto py-6">
-        <Routes>
-          <Route path="/" element={<Home posts={posts} />} />
-          <Route path="/post/:slug" element={<PostPage posts={posts} />} />
-        </Routes>
+    <div className="container mx-auto py-6">
+      <h1 className="text-3xl font-bold mb-6">Bienvenue sur le Blog</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post, index) => (
+          <BlogPost key={index} post={post} />
+        ))}
       </div>
-    </Router>
+    </div>
   );
 };
 
-export default App;
+export default Home;
